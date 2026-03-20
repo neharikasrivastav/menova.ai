@@ -1,4 +1,4 @@
-# MenoWise — Tier Comparison Analysis
+# Menova — Tier Comparison Analysis
 
 ## Summary
 

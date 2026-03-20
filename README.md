@@ -1,6 +1,6 @@
 # menova.ai — Agentic AI Health Assistant for Menopause
 
-> A 3-tier RAG system with confidence-gated routing and clinical safety guardrails, built as an AI Product Management portfolio project.
+> A 3-tier RAG system with confidence-gated routing and clinical safety guardrails.
 
 ## The Problem
 

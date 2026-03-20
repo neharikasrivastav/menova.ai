@@ -1,0 +1,190 @@
+{
+  "name": "Menova - Confidence Router",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "2b2423a3-60fa-4fc2-b80f-a70e25afdaa5",
+      "name": "When chat message received",
+      "webhookId": "8ba3881b-47fa-42d4-9016-d41eedb75395"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a medical query risk classifier for a menopause health assistant. Classify the user's question into exactly one risk level. Output ONLY the JSON, nothing else.\n\nLOW - General educational questions about menopause, lifestyle advice, well-established facts\nExamples: \"What is perimenopause?\", \"What foods help with bone health?\", \"How long does menopause last?\"\n\nMEDIUM - Personal symptom analysis, treatment options discussed generally, questions combining multiple symptoms\nExamples: \"I'm 47 and having hot flashes and anxiety - is this normal?\", \"What are my options for managing night sweats?\"\n\nHIGH - Drug interactions, starting/stopping medication, emergency symptoms, questions involving personal medical history that changes treatment recommendations\nExamples: \"Can I take HRT if my mother had breast cancer?\", \"I'm on blood pressure medication - will HRT interact?\", \"Should I stop my antidepressant?\"\n\nUser question: {{ $json.chatInput }}\n\nRespond with ONLY this JSON format:\n{\"risk_level\": \"LOW or MEDIUM or HIGH\", \"reasoning\": \"one sentence why\", \"route\": \"simple_rag or agentic_rag or graph_rag\"}",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.8,
+      "position": [
+        208,
+        0
+      ],
+      "id": "6fd13631-d74c-403d-9c6a-2006c8dbe4a4",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        144,
+        208
+      ],
+      "id": "103a393e-ad5c-4bdc-bc07-1092ed2a6d3e",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "LIp0THWQgt8gSSP5",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.text }}",
+                    "rightValue": "LOW",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "bfb52f7a-d53f-4d1b-8fa8-21b23769ff1e"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "simple_rag"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "e4d7083d-5305-446c-80da-c327dadf1ed5",
+                    "leftValue": "={{ $json.text }}",
+                    "rightValue": "MEDIUM",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "agentic_rag"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "955c545e-d2dd-4429-98b7-0bf6641aff01",
+                    "leftValue": "={{ $json.text }}",
+                    "rightValue": "HIGH",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "graph_rag"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        560,
+        0
+      ],
+      "id": "4f8d60f2-b33b-47d5-b3bd-abc90011b615",
+      "name": "Switch"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "bc08c472-38cb-4d01-94f1-35deca351d3a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9239fff25f776f12e45ddb79b59333e32be8fc9a764ad3879f41d8811537820e"
+  },
+  "id": "pSzehH15Hs7evouO",
+  "tags": []
+}

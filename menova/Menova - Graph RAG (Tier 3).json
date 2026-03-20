@@ -1,0 +1,148 @@
+{
+  "name": "Menova - Graph RAG (Tier 3)",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1e136251-5e79-476f-a691-baa47a2deb9f",
+      "name": "When chat message received",
+      "webhookId": "313bb1f2-eeaa-43d2-b9a1-b1f0f47aaa21"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a medical entity extractor. Extract the relevant medical entities from the user's question. Output ONLY valid JSON, nothing else.\n\nExtract:\n- treatments: any medications, supplements, or therapies mentioned\n- conditions: any medical conditions or diagnoses mentioned  \n- symptoms: any symptoms mentioned\n- risk_factors: any risk factors mentioned (family history, existing conditions)\n- query_type: one of \"drug_interaction\", \"contraindication_check\", \"treatment_options\", \"symptom_analysis\"\n\nUser question: {{ $json.chatInput }}\n\nJSON output:",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.8,
+      "position": [
+        208,
+        0
+      ],
+      "id": "ab979ebb-f3b8-41b8-ab2c-8618314eb8e0",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        144,
+        208
+      ],
+      "id": "4fbd821d-f4e2-4bf9-9ea9-ae807d1a951b",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "LIp0THWQgt8gSSP5",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are MenoWise, a menopause health assistant with access to a medical knowledge graph. Use the following knowledge graph data to answer the user's question.\n\nCONTRAINDICATIONS:\n- estradiol is CONTRAINDICATED BY family_history_breast_cancer (relative severity - requires specialist consultation, consider non-hormonal alternatives)\n- estradiol is CONTRAINDICATED BY personal_history_blood_clots (absolute for oral - transdermal may be considered with specialist guidance)\n- estradiol is CONTRAINDICATED BY active_liver_disease (absolute)\n- estradiol is CONTRAINDICATED BY age_over_60 (relative - initiation not recommended after age 60)\n- conjugated_estrogens is CONTRAINDICATED BY family_history_breast_cancer (relative - higher risk than estradiol)\n- conjugated_estrogens is CONTRAINDICATED BY personal_history_blood_clots (absolute)\n\nDRUG INTERACTIONS:\n- paroxetine INTERACTS WITH tamoxifen (SEVERE - CYP2D6 inhibition reduces tamoxifen effectiveness, DO NOT combine)\n- sertraline INTERACTS WITH tamoxifen (LOW - minimal CYP2D6 inhibition, safe to combine)\n- sertraline INTERACTS WITH estradiol (LOW - no major direct interaction, safe to combine)\n- st_johns_wort INTERACTS WITH estradiol (SEVERE - reduces HRT effectiveness, DO NOT combine)\n- st_johns_wort INTERACTS WITH sertraline (SEVERE - risk of serotonin syndrome, DO NOT combine)\n\nALTERNATIVES WHEN HRT IS CONTRAINDICATED:\n- venlafaxine: SNRI, 40-60% hot flash reduction, safe with tamoxifen\n- paroxetine: FDA-approved for vasomotor symptoms, but NOT safe with tamoxifen\n- gabapentin: 30-50% hot flash reduction, also helps sleep\n- fezolinetant (Veozah): NK3 antagonist, directly targets thermoregulation, FDA approved 2023\n- CBT: non-pharmacological, reduces hot flash impact by ~50%, no drug interactions\n- transdermal estrogen: preferred when oral estrogen is contraindicated due to clotting risk\n\nTREATMENTS FOR HOT FLASHES:\n- estradiol: strong evidence, high effectiveness (but check contraindications)\n- venlafaxine: strong evidence, moderate effectiveness\n- paroxetine: strong evidence, moderate effectiveness (only FDA-approved SSRI for VMS)\n- gabapentin: moderate evidence, moderate effectiveness\n- fezolinetant: strong evidence, high effectiveness\n- CBT: strong evidence, moderate effectiveness (reduces impact not frequency)\n- clonidine: weak evidence, low effectiveness\n\nUser question: {{ $('When chat message received').item.json.chatInput }}\n\nEntity analysis from previous step: {{ $json.text }}\n\nUsing the knowledge graph data above, provide a detailed, personalized answer. If contraindications apply, state them clearly. Recommend safer alternatives. Always recommend consulting a healthcare provider.\n\nAnswer:",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.8,
+      "position": [
+        768,
+        0
+      ],
+      "id": "ed324eb9-433b-4316-9196-fe8b7f2fd2be",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        704,
+        208
+      ],
+      "id": "b20195c1-190e-4549-8bdc-26493d612b94",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "LIp0THWQgt8gSSP5",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "4d003e3e-7908-40b6-98c6-ebcbb83fc51f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9239fff25f776f12e45ddb79b59333e32be8fc9a764ad3879f41d8811537820e"
+  },
+  "id": "wKXNSR7uLOqdKuX5",
+  "tags": []
+}

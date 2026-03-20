@@ -1,0 +1,304 @@
+{
+  "name": "Menova - Agentic RAG (Tier 2)",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d7817ff6-5f44-4577-a373-3cb310d93193",
+      "name": "When chat message received",
+      "webhookId": "94a0dd7c-5b9e-40e4-aaf9-fc86ce20e861"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        208
+      ],
+      "id": "9e5460a2-ac1b-41f8-bc98-329e4f7650ab",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "LIp0THWQgt8gSSP5",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are a medical query rewriter. Your job is to take a user's conversational health question and rewrite it into retrieval-optimized search queries using proper medical terminology.  Rules: - Expand casual language into clinical terms (brain fog → cognitive changes, hot flashes → vasomotor symptoms) - Add relevant medical context (age mentions → perimenopause/menopause stage) - Remove conversational filler (I'm having, is this normal, should I worry) - Output ONLY the rewritten query, nothing else  User question: {{ $json.chatInput }}  Rewritten query:"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.8,
+      "position": [
+        208,
+        0
+      ],
+      "id": "ad3f1d42-005a-43c9-a6e8-a88d8edb0309",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        144,
+        208
+      ],
+      "id": "f044f785-1866-4ea0-aae4-e3c2768bdbfa",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "LIp0THWQgt8gSSP5",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "load",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "menova",
+          "mode": "list",
+          "cachedResultName": "menova"
+        },
+        "prompt": "={{ $json.text }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1.3,
+      "position": [
+        560,
+        0
+      ],
+      "id": "980b4400-54f7-428b-ae8b-d82f10986a48",
+      "name": "Pinecone Vector Store",
+      "credentials": {
+        "pineconeApi": {
+          "id": "LyybRlQdSxOXN4tA",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-embedding-001"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        656,
+        208
+      ],
+      "id": "fe0a5b18-03d9-42bc-b40a-6dbaee2793cb",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "LIp0THWQgt8gSSP5",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Use ONLY the following retrieved context to answer the user's question. Never make up information. Always recommend consulting a healthcare provider.\n\nRetrieved context:\n{{ $json.document.pageContent }}\n\nOriginal user question: {{ $('When chat message received').item.json.chatInput }}\n\nAnswer:",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are Menova, a knowledgeable and empathetic health assistant specializing in menopause. \nUse ONLY the following retrieved context to answer the user's question. Never make up information. If the context doesn't contain enough information, say so honestly. Always recommend consulting a healthcare provider for personalized medical advice.\nRetrieved context:\n{{ $json.document.pageContent }}\nOriginal user question: {{ $('When chat message received').item.json.chatInput }}\nAnswer:"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.8,
+      "position": [
+        880,
+        112
+      ],
+      "id": "8dbdae7d-b26b-444b-81f6-7f5bb548a4ca",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        800,
+        288
+      ],
+      "id": "681d48a8-28eb-46da-ac01-f86e6a445fca",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "LIp0THWQgt8gSSP5",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a medical safety reviewer for a menopause health assistant. Review the following AI-generated response and check for safety issues.\n\nFlag as UNSAFE if the response:\n- Recommends starting or stopping any specific medication\n- Makes a definitive diagnosis (says \"you have X condition\")\n- Misses mentioning that symptoms could indicate something other than menopause\n- Provides dosage information\n- Contradicts standard clinical guidelines\n- Fails to recommend consulting a healthcare provider\n\nFlag as SAFE if the response:\n- Provides general educational information only\n- Presents treatment options as \"options to discuss with your doctor\"\n- Acknowledges uncertainty appropriately\n- Includes a recommendation to consult a healthcare provider\n\nAI Response to review:\n{{ $json.text }}\n\nOriginal user question:\n{{ $('When chat message received').item.json.chatInput }}\n\nRespond with ONLY this format:\nSAFETY: SAFE or UNSAFE\nREASON: one sentence explanation\nMODIFIED_RESPONSE: if UNSAFE, rewrite the response to be safe. If SAFE, repeat the original response exactly.",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.8,
+      "position": [
+        1152,
+        240
+      ],
+      "id": "c37d5921-f3f1-44a7-87e8-52921c129814",
+      "name": "Basic LLM Chain2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1088,
+        448
+      ],
+      "id": "9d396862-0820-4943-b153-1f71c7c2c2aa",
+      "name": "Google Gemini Chat Model3",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "LIp0THWQgt8gSSP5",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "f9bd3973-1235-4563-a65b-4a3b5488878d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9239fff25f776f12e45ddb79b59333e32be8fc9a764ad3879f41d8811537820e"
+  },
+  "id": "rTDZGbbDqpQ2htIA",
+  "tags": []
+}

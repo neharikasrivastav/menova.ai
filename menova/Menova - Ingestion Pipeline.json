@@ -1,0 +1,297 @@
+{
+  "name": "Menova - Ingestion Pipeline",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "5fe134e7-9050-458d-9e50-01f4a2a7df75",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7c3f18a3-bd5a-43b7-a3fe-688ca903f91c",
+              "name": "text",
+              "value": "Menopause occurs in three distinct stages: perimenopause, menopause, and postmenopause. Perimenopause is the transition period leading up to menopause, typically beginning in a woman's mid-40s but sometimes as early as the mid-30s. During perimenopause, the ovaries gradually produce less estrogen and progesterone. Menstrual cycles may become irregular, with periods that are closer together or further apart, heavier or lighter. Perimenopause lasts an average of 4 to 8 years and ends when a woman has gone 12 consecutive months without a menstrual period. Menopause is officially diagnosed after 12 consecutive months without a period. The average age of menopause in the United States is 51, though it can occur anywhere between ages 40 and 58. Early menopause occurs between ages 40 and 45, and premature menopause occurs before age 40. Postmenopause refers to the years after menopause. During postmenopause, menopausal symptoms such as hot flashes may ease for many women, but health risks related to the loss of estrogen increase, including osteoporosis and cardiovascular disease. Postmenopausal women should pay particular attention to bone health, heart health, and urogenital health.",
+              "type": "string"
+            },
+            {
+              "id": "dc885ff9-f227-49c1-900c-eeb0b1ef62e9",
+              "name": "text",
+              "value": "Vasomotor symptoms (VMS) are the most commonly reported symptoms of menopause, affecting up to 80% of women. Hot flashes are sudden feelings of intense warmth in the upper body, particularly the face, neck, and chest. They can last from 30 seconds to 10 minutes and may be accompanied by sweating, flushing, and a rapid heartbeat. Night sweats are hot flashes that occur during sleep, often causing significant sleep disruption. The frequency and severity of vasomotor symptoms vary widely. Some women experience occasional mild hot flashes, while others have multiple severe episodes daily. On average, vasomotor symptoms last about 7 years, though some women experience them for more than 10 years. Triggers for hot flashes include spicy foods, caffeine, alcohol, hot beverages, warm environments, stress, and tight clothing. Vasomotor symptoms are caused by changes in the hypothalamic thermoregulatory center due to declining estrogen levels. The thermoneutral zone, the range of core body temperatures that the body tolerates without triggering temperature regulation responses, narrows significantly during menopause.",
+              "type": "string"
+            },
+            {
+              "id": "59ca7797-ae78-40a0-a922-bd6b9afa4995",
+              "name": "text",
+              "value": "Psychological and cognitive symptoms during menopause are common and can significantly impact quality of life. Mood changes affect up to 70% of menopausal women and include increased irritability, anxiety, sadness, and mood swings. These changes are linked to fluctuating and declining estrogen levels, which affect serotonin and other neurotransmitters involved in mood regulation. Anxiety during perimenopause can manifest as generalized worry, panic attacks, social anxiety, or a persistent feeling of unease. Women with a prior history of anxiety or depression are at higher risk. Depression risk increases during perimenopause, with studies showing a 2 to 4 times greater risk compared to premenopausal years. Brain fog, formally known as cognitive changes associated with menopause, includes difficulty concentrating, memory lapses, word-finding difficulties, and reduced mental clarity. Research suggests these cognitive changes are most pronounced during the perimenopause transition and often improve in postmenopause. It is important to distinguish menopause-related mood and cognitive changes from clinical depression, anxiety disorders, and early cognitive decline, as these conditions require different treatment approaches. Women experiencing severe or persistent psychological symptoms should be evaluated by a healthcare provider to rule out other conditions including thyroid disorders, which can mimic many menopause symptoms.",
+              "type": "string"
+            },
+            {
+              "id": "0a178770-f499-4773-83d7-7b386be752d4",
+              "name": "text",
+              "value": "Joint pain and muscle aches are common but often overlooked symptoms of menopause, affecting up to 50% of menopausal women. Estrogen has anti-inflammatory properties and plays a role in maintaining joint health and cartilage integrity. As estrogen levels decline, women may experience joint stiffness particularly in the morning, joint pain especially in the hands, knees, and hips, muscle aches and tension, and increased risk of developing osteoarthritis. Osteoporosis is a major concern during and after menopause. Women can lose up to 20% of their bone density in the five to seven years following menopause due to estrogen decline. Risk factors for osteoporosis include family history, small body frame, smoking, excessive alcohol use, low calcium intake, and sedentary lifestyle. Bone density screening via DEXA scan is recommended for all women at age 65, or earlier for those with risk factors. Weight-bearing exercise, adequate calcium intake of 1200mg daily, vitamin D supplementation of 800-1000 IU daily, and fall prevention strategies are important for bone health during and after menopause.",
+              "type": "string"
+            },
+            {
+              "id": "698f5016-b941-481e-b25c-8eee509d60a5",
+              "name": "text",
+              "value": "Genitourinary Syndrome of Menopause (GSM), previously known as vulvovaginal atrophy, affects up to 50% of postmenopausal women and unlike vasomotor symptoms, GSM tends to worsen over time without treatment. Symptoms include vaginal dryness, burning, and irritation, painful intercourse known as dyspareunia, urinary urgency and frequency, recurrent urinary tract infections, and light bleeding after intercourse. GSM is caused by the decline in estrogen which leads to thinning of the vaginal and urethral tissues, decreased lubrication, changes in vaginal pH making infections more likely, and reduced blood flow to the genital area. Treatment options include vaginal moisturizers used regularly for ongoing comfort, water-based lubricants used during sexual activity, low-dose vaginal estrogen available as creams, rings, or tablets which is the most effective treatment, ospemifene an oral non-estrogen medication, and laser therapy though evidence is still emerging. Low-dose vaginal estrogen is generally considered safe even for women who cannot take systemic hormone therapy, as systemic absorption is minimal. However, women with a history of estrogen-sensitive cancers should discuss this with their oncologist.",
+              "type": "string"
+            },
+            {
+              "id": "61e4f379-79f3-4c23-af1b-22ead633098d",
+              "name": "text",
+              "value": "Cardiovascular risk increases significantly after menopause. Estrogen has a protective effect on blood vessels by promoting vasodilation, reducing LDL cholesterol, and increasing HDL cholesterol. As estrogen declines, women may experience changes in cholesterol profiles with increased LDL and decreased HDL, increased blood pressure, greater tendency toward weight gain especially visceral fat, increased risk of metabolic syndrome, and heart palpitations. Heart palpitations during perimenopause are common and usually benign, caused by hormonal fluctuations affecting the heart's electrical system. However, palpitations can also indicate arrhythmia, thyroid disorders, or other cardiac conditions. Women experiencing frequent palpitations, palpitations accompanied by dizziness or shortness of breath, or palpitations lasting more than a few minutes should seek medical evaluation. Cardiovascular disease is the leading cause of death in postmenopausal women. Risk reduction strategies include regular cardiovascular exercise of at least 150 minutes per week, maintaining a healthy weight, managing blood pressure and cholesterol, not smoking, limiting alcohol, and managing stress.",
+              "type": "string"
+            },
+            {
+              "id": "bb53cdd8-ab4d-4348-960f-0fa8fa0e484c",
+              "name": "text",
+              "value": "Hormone Replacement Therapy (HRT), also called Menopausal Hormone Therapy (MHT), is the most effective treatment for vasomotor symptoms and genitourinary syndrome of menopause. HRT involves supplementing the body with estrogen, and for women with a uterus, progesterone or a progestin is added to protect the uterine lining from endometrial hyperplasia. Types of HRT include estrogen-only therapy (ET) for women who have had a hysterectomy, combined estrogen-progesterone therapy (EPT) for women with an intact uterus, cyclical HRT where progesterone is taken for part of the month causing a withdrawal bleed, and continuous combined HRT where both hormones are taken daily with no planned bleeding. Routes of administration include oral tablets, transdermal patches, topical gels and sprays, and vaginal rings. Transdermal estrogen is preferred for women with increased risk of blood clots, as it bypasses the liver and does not increase clotting factors. Current guidelines from NAMS and the International Menopause Society recommend that HRT should be initiated in women under 60 or within 10 years of menopause onset for maximum benefit and minimum risk. This is known as the window of opportunity. Benefits of HRT beyond symptom relief include bone density preservation, possible reduction in colorectal cancer risk, and potential cardiovascular protection when started early. The decision to use HRT should be individualized based on a woman's symptoms, health history, risk factors, and personal preferences, in consultation with a healthcare provider.",
+              "type": "string"
+            },
+            {
+              "id": "ce90488d-2ada-4028-be83-3e103b36ab40",
+              "name": "text",
+              "value": "HRT carries specific risks that must be weighed against benefits for each individual woman. Known risks include a small increased risk of breast cancer with combined estrogen-progesterone therapy, particularly after 5 or more years of use. Estrogen-only therapy has a lower or possibly no increased breast cancer risk. There is an increased risk of venous thromboembolism including deep vein thrombosis and pulmonary embolism, particularly with oral estrogen. Transdermal estrogen does not appear to increase this risk. There is a small increased risk of stroke with oral estrogen, though the absolute risk is very low in younger women. Absolute contraindications for systemic HRT include current or recent breast cancer, active liver disease, unexplained vaginal bleeding, current venous thromboembolism, known blood clotting disorder such as Factor V Leiden, active cardiovascular disease including recent heart attack or stroke, and known or suspected pregnancy. Relative contraindications requiring specialist consultation include family history of breast cancer, history of venous thromboembolism, migraine with aura, gallbladder disease, and uterine fibroids. Women with these relative contraindications may still be candidates for HRT, particularly transdermal preparations, but require careful evaluation and monitoring by a specialist. Regular follow-up is recommended, typically annually, to reassess the benefits and risks of continuing HRT.",
+              "type": "string"
+            },
+            {
+              "id": "3e4524be-5884-4f33-bb19-35acc0d88b05",
+              "name": "text",
+              "value": "Selective serotonin reuptake inhibitors (SSRIs) and serotonin-norepinephrine reuptake inhibitors (SNRIs) are used off-label for the management of vasomotor symptoms in women who cannot or choose not to take HRT. Venlafaxine (an SNRI) at doses of 37.5 to 75mg daily has the strongest evidence for reducing hot flash frequency and severity, with studies showing a 40 to 60 percent reduction. Paroxetine is the only SSRI that has FDA approval for the treatment of moderate to severe vasomotor symptoms associated with menopause, at a dose of 7.5mg daily (brand name Brisdelle). Escitalopram at 10 to 20mg daily has also shown benefit in clinical trials for hot flashes. Common side effects of SSRIs and SNRIs include nausea, headache, dizziness, dry mouth, sexual dysfunction, and sleep disturbances. These medications should not be stopped abruptly as this can cause discontinuation syndrome. Important drug interactions: Paroxetine and fluoxetine are strong inhibitors of the CYP2D6 enzyme. Women taking tamoxifen for breast cancer prevention or treatment should NOT take paroxetine or fluoxetine, as these drugs inhibit the conversion of tamoxifen to its active metabolite endoxifen, significantly reducing tamoxifen's effectiveness. Venlafaxine, escitalopram, and sertraline have minimal CYP2D6 inhibition and are safer choices for women on tamoxifen.",
+              "type": "string"
+            },
+            {
+              "id": "241b44de-7039-482a-b3de-be30ef3d268d",
+              "name": "text",
+              "value": "Gabapentin is an anticonvulsant medication used off-label for vasomotor symptoms, particularly useful for women who also experience sleep disruption. At doses of 300 to 900mg daily, gabapentin can reduce hot flash frequency by 30 to 50 percent. It is typically taken at bedtime due to its sedating effect, which can benefit women with menopause-related insomnia. Side effects include drowsiness, dizziness, and peripheral edema. Clonidine, an antihypertensive medication, can be used for hot flashes at low doses of 0.1mg daily, but its effectiveness is modest and side effects including dry mouth, drowsiness, and low blood pressure limit its use. Fezolinetant (brand name Veozah) is a newer non-hormonal treatment specifically developed for vasomotor symptoms. It is a neurokinin 3 receptor antagonist that works directly on the thermoregulatory center in the brain. FDA approved in 2023, it has shown significant reduction in hot flash frequency and severity in clinical trials. Liver function monitoring is recommended. Oxybutynin, traditionally used for overactive bladder, has shown effectiveness in reducing hot flashes in some studies at doses of 2.5 to 5mg twice daily. Common supplements used for menopause symptoms include black cohosh, red clover, evening primrose oil, and soy isoflavones. Evidence for these supplements is mixed, and they are not regulated to the same standards as prescription medications. Women should inform their healthcare provider about any supplements they are taking, as interactions with other medications are possible.",
+              "type": "string"
+            },
+            {
+              "id": "32989cff-4f72-4edb-8248-ab593ee07a15",
+              "name": "text",
+              "value": "Women in menopause often take multiple medications, making drug interactions an important safety consideration. Key interactions include: HRT and anticoagulants such as warfarin: Estrogen can affect clotting factors and may alter warfarin effectiveness. Close INR monitoring is required if HRT is started or stopped in women on warfarin. Transdermal estrogen is preferred as it has less impact on clotting. SSRIs and blood thinners: SSRIs including sertraline, paroxetine, and fluoxetine can increase bleeding risk when combined with anticoagulants or antiplatelet medications like aspirin. Monitor for signs of unusual bleeding. Paroxetine and tamoxifen: As noted, paroxetine strongly inhibits CYP2D6 and should NOT be used with tamoxifen. Use venlafaxine, escitalopram, or sertraline instead. HRT and thyroid medication: Starting estrogen therapy can increase the body's requirement for thyroid hormone. Women on levothyroxine who start HRT should have their thyroid levels rechecked after 6 to 8 weeks. Gabapentin and CNS depressants: Gabapentin combined with opioids, benzodiazepines, or alcohol increases the risk of respiratory depression and excessive sedation. Black cohosh and liver: There have been rare reports of liver toxicity associated with black cohosh. Women with liver conditions or taking hepatotoxic medications should avoid it. St. John's Wort interactions: This popular supplement for mood is a potent enzyme inducer that can reduce the effectiveness of many medications including oral contraceptives, HRT, antidepressants, blood thinners, and heart medications. It should not be combined with SSRIs due to the risk of serotonin syndrome.",
+              "type": "string"
+            },
+            {
+              "id": "d03aa991-702f-404f-a41e-73404feb14b6",
+              "name": "text",
+              "value": "Sertraline (brand name Zoloft) is an SSRI commonly prescribed for depression and anxiety in menopausal women. While not FDA-approved specifically for vasomotor symptoms, some studies suggest modest benefit for hot flashes. Typical dosing for mood disorders is 50 to 200mg daily. Sertraline has minimal CYP2D6 inhibition, making it a safer choice than paroxetine for women also taking tamoxifen. When considering sertraline alongside HRT, there is no major direct drug interaction between sertraline and standard HRT formulations including estradiol and progesterone. However, both sertraline and estrogen affect serotonin pathways, so starting both simultaneously may make it difficult to attribute side effects or benefits to either medication. A common approach is to start one medication, stabilize, then add the other if needed. Women on sertraline who are considering HRT should discuss with their healthcare provider whether HRT might address their symptoms sufficiently to allow dose reduction of sertraline, or whether both medications are needed. Sertraline side effects relevant to menopausal women include sexual dysfunction which may compound menopause-related libido changes, weight changes, and sleep disturbances. Sertraline should not be stopped abruptly. Tapering over several weeks is recommended to avoid discontinuation syndrome.",
+              "type": "string"
+            },
+            {
+              "id": "6c502835-0e44-4f57-b17e-690bf1aeae61",
+              "name": "text",
+              "value": "Cognitive Behavioral Therapy (CBT) is an evidence-based psychological intervention that has shown significant benefit for several menopause symptoms. The MENOS trials, landmark studies conducted in the UK, demonstrated that CBT specifically designed for menopause can reduce the impact of hot flashes and night sweats by approximately 50%, even though it does not reduce their frequency. CBT works by changing the cognitive and behavioral responses to hot flashes, reducing the distress and interference they cause. CBT for menopause-related insomnia follows similar principles to CBT for insomnia (CBT-I) and includes sleep restriction, stimulus control, cognitive restructuring of unhelpful sleep beliefs, and relaxation training. Studies show CBT-I is as effective as medication for insomnia and has more lasting benefits. CBT can also address menopause-related anxiety and low mood, body image concerns related to menopause changes, and adjustment to the life transition that menopause represents. CBT can be delivered in group settings, individually, or through guided self-help including digital programs. It is recommended by NICE guidelines as a first-line treatment option alongside HRT. CBT is particularly valuable for women who cannot take HRT, prefer non-pharmacological approaches, or want to complement their medical treatment with psychological support.",
+              "type": "string"
+            },
+            {
+              "id": "3ab46f21-b749-4bea-9514-33e398825a51",
+              "name": "text",
+              "value": "Regular physical activity is one of the most beneficial lifestyle interventions for menopausal women, with benefits across nearly every symptom domain. For vasomotor symptoms, regular moderate-intensity exercise may reduce the frequency and severity of hot flashes, though evidence is mixed. Exercise does consistently improve sleep quality, mood, and overall wellbeing, which indirectly helps manage vasomotor symptom burden. For bone health, weight-bearing exercises such as walking, jogging, dancing, and stair climbing, combined with resistance training, are essential for maintaining bone density. The recommended amount is at least 30 minutes of weight-bearing activity most days of the week plus resistance training 2 to 3 times per week. For cardiovascular health, the American Heart Association recommends at least 150 minutes per week of moderate-intensity aerobic activity or 75 minutes of vigorous activity. For mood and cognitive function, exercise has been shown to reduce symptoms of depression and anxiety, improve cognitive function, and enhance overall quality of life. Even moderate exercise like brisk walking for 30 minutes daily can have significant mental health benefits. For weight management, metabolism slows during menopause and body composition shifts toward more abdominal fat. Regular exercise, particularly combining cardiovascular and resistance training, helps manage weight and reduce visceral fat. For joint health, low-impact exercises such as swimming, cycling, yoga, and tai chi can help maintain joint flexibility and reduce pain without excessive stress on joints. Starting an exercise routine during menopause should be gradual, with attention to any symptoms such as joint pain or pelvic floor issues that may require modification.",
+              "type": "string"
+            },
+            {
+              "id": "52b22b14-ba01-417a-8281-9acb688f6061",
+              "name": "text",
+              "value": "Dietary choices play an important role in managing menopause symptoms and reducing long-term health risks. Calcium and vitamin D are critical for bone health. Recommended calcium intake for menopausal women is 1200mg daily from food and supplements combined. Good dietary sources include dairy products, fortified plant milks, leafy greens, sardines, and tofu made with calcium sulfate. Vitamin D at 800 to 1000 IU daily supports calcium absorption, and many women need supplementation as dietary sources are limited. Phytoestrogens are plant compounds that have weak estrogen-like effects. Food sources include soy products such as tofu, tempeh, edamame, and soy milk, flaxseeds, sesame seeds, and legumes. Some studies suggest regular consumption of phytoestrogens may modestly reduce hot flash frequency, though results are inconsistent. Omega-3 fatty acids found in fatty fish, walnuts, flaxseeds, and chia seeds have anti-inflammatory properties and may support cardiovascular and joint health. Foods to limit or avoid include caffeine and alcohol which can trigger hot flashes and disrupt sleep, high-sodium foods which can worsen bloating and increase blood pressure, high-sugar foods which can worsen mood swings and contribute to weight gain, and spicy foods which may trigger hot flashes in some women. Adequate hydration is important as hormonal changes can affect fluid balance. A Mediterranean-style diet rich in fruits, vegetables, whole grains, lean proteins, and healthy fats is often recommended for menopausal women as it supports cardiovascular health, bone health, weight management, and overall wellbeing.",
+              "type": "string"
+            },
+            {
+              "id": "c2fb89d0-e013-4e25-bcad-179b98ff5d64",
+              "name": "text",
+              "value": "Sleep disruption is one of the most common and impactful symptoms of menopause, affecting 40 to 60 percent of menopausal women. Causes of menopause-related sleep problems include night sweats causing awakenings, hormonal changes affecting sleep architecture and circadian rhythm, increased prevalence of sleep-disordered breathing after menopause, restless legs syndrome which becomes more common with age, and anxiety or mood changes that interfere with sleep. Sleep hygiene strategies particularly relevant for menopausal women include keeping the bedroom cool with temperature between 60 and 67 degrees Fahrenheit, using moisture-wicking sleepwear and bedding, maintaining a consistent sleep schedule even on weekends, avoiding caffeine after noon and limiting alcohol which worsens night sweats, creating a relaxing bedtime routine, limiting screen exposure in the hour before bed, and regular exercise but not within 3 hours of bedtime. Treatment options for persistent sleep problems include CBT for insomnia which is recommended as first-line treatment, low-dose HRT which can significantly improve sleep by reducing night sweats, gabapentin which has sedating properties beneficial at bedtime, melatonin at low doses of 0.5 to 3mg which may help with sleep onset, and in some cases short-term prescription sleep aids though these carry risks of dependence. Women who snore loudly, experience witnessed breathing pauses during sleep, or have excessive daytime sleepiness should be evaluated for obstructive sleep apnea, which increases in prevalence after menopause.",
+              "type": "string"
+            },
+            {
+              "id": "35c60405-8c20-464d-8c4d-80e0ddbfa949",
+              "name": "text",
+              "value": "The menopause transition often coincides with other significant life changes including aging parents, children leaving home, career pressures, and relationship changes, making stress management particularly important. Chronic stress can worsen menopause symptoms, particularly hot flashes, sleep problems, and mood changes. Evidence-based stress management approaches include mindfulness meditation which has been shown in studies to reduce the perceived impact of hot flashes and improve overall menopause-related quality of life, yoga which combines physical activity with mindfulness and has shown benefit for hot flashes, sleep, mood, and joint flexibility, deep breathing exercises particularly paced respiration at 6 to 8 breaths per minute which can help reduce the intensity of hot flashes in the moment, progressive muscle relaxation which can reduce anxiety and improve sleep, and social connection and support groups which help normalize the menopause experience and reduce isolation. Signs that professional mental health support may be needed include persistent feelings of sadness or hopelessness lasting more than two weeks, anxiety that interferes with daily functioning, loss of interest in previously enjoyed activities, significant changes in appetite or weight, thoughts of self-harm, and inability to cope with daily responsibilities. Menopause is a normal life transition, not a disorder, but the symptoms can significantly impact quality of life and wellbeing. Seeking help is a sign of self-awareness, not weakness.",
+              "type": "string"
+            },
+            {
+              "id": "bac941f2-4bc3-4b48-a438-10ad2c5ab42e",
+              "name": "text",
+              "value": "Perimenopause is primarily a clinical diagnosis based on symptoms and menstrual history rather than laboratory tests. In women over 45 with typical symptoms such as menstrual irregularity and vasomotor symptoms, blood tests are generally not needed to diagnose perimenopause. However, certain tests may be useful in specific situations. FSH (Follicle Stimulating Hormone) levels rise as ovarian function declines, but FSH fluctuates significantly during perimenopause, making a single measurement unreliable. A consistently elevated FSH level above 30 IU/L along with amenorrhea suggests menopause, but is not required for diagnosis in women over 45. Testing may be recommended for women under 45 with suspected early menopause, to distinguish menopause from other causes of amenorrhea such as pregnancy, thyroid disease, or hyperprolactinemia, when contraceptive decisions depend on menopausal status, and when symptoms are atypical and other conditions need to be ruled out. Anti-Mullerian Hormone (AMH) is sometimes used as a marker of ovarian reserve but is not recommended for routine menopause diagnosis. Thyroid function tests (TSH) should be considered as hypothyroidism and hyperthyroidism can mimic many perimenopause symptoms including fatigue, mood changes, weight changes, and menstrual irregularity. Other conditions to consider in the differential diagnosis include pregnancy, thyroid disorders, polycystic ovary syndrome, premature ovarian insufficiency, hyperprolactinemia, and medication side effects.",
+              "type": "string"
+            },
+            {
+              "id": "29f42156-78e3-430b-aadf-773a0036fba2",
+              "name": "text",
+              "value": "While most menopause symptoms are not dangerous, certain situations require urgent medical evaluation. Seek immediate medical attention for heavy vaginal bleeding soaking a pad or tampon every hour for several hours, any vaginal bleeding after 12 months of no periods as postmenopausal bleeding requires investigation to rule out endometrial cancer, chest pain or pressure especially if accompanied by shortness of breath, jaw pain, or arm pain, sudden severe headache unlike previous headaches, sudden weakness or numbness on one side of the body, sudden vision changes, and signs of deep vein thrombosis including leg swelling, pain, warmth, or redness especially if taking HRT. Seek prompt but non-emergency medical evaluation for persistent or worsening mood changes not responding to self-help strategies, any breast lump or unusual breast changes, urinary symptoms suggesting infection such as burning, urgency, or blood in urine, unexplained weight loss, persistent fatigue not explained by sleep disruption, joint pain severe enough to limit daily activities, and any new or concerning symptom that is causing significant worry. It is always better to seek medical advice and be reassured than to ignore a potentially important symptom. Women should maintain regular health screenings during and after menopause including mammograms, cervical screening, bone density scans when indicated, cardiovascular risk assessment, and colon cancer screening.",
+              "type": "string"
+            },
+            {
+              "id": "77f809a0-528e-4ec2-a7a2-0e39d78b8ee4",
+              "name": "text",
+              "value": "Menopause brings physical changes that can affect body image and self-esteem. Common changes include weight redistribution with more fat stored around the midsection, changes in skin elasticity and dryness, hair thinning or texture changes, breast changes, and changes in body shape. These changes are a normal part of aging and hormonal transition. Strategies for maintaining a positive body image during menopause include focusing on what your body can do rather than how it looks, engaging in physical activities you enjoy which builds appreciation for body function, wearing comfortable clothing that makes you feel good, practicing self-compassion and challenging negative self-talk, connecting with other women going through similar experiences, and seeking professional support if body image concerns significantly impact mental health or daily functioning. Cultural attitudes toward menopause vary widely. In some cultures menopause is viewed positively as a transition to a phase of wisdom and freedom, while in others it is stigmatized. Challenging negative cultural narratives and reframing menopause as a natural and potentially empowering life transition can support wellbeing.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "6f9e99f9-0349-49ae-9552-030e40b1280b",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "menova",
+          "mode": "list",
+          "cachedResultName": "menova"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1.3,
+      "position": [
+        416,
+        0
+      ],
+      "id": "2c7db1aa-3f1f-4c94-89aa-154fbb8a5db3",
+      "name": "Pinecone Vector Store",
+      "credentials": {
+        "pineconeApi": {
+          "id": "LyybRlQdSxOXN4tA",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-embedding-001"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        464,
+        208
+      ],
+      "id": "4d70d021-105d-46ae-9405-ca21b53176fa",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "LIp0THWQgt8gSSP5",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "textSplittingMode": "custom",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        560,
+        208
+      ],
+      "id": "e29b0509-b2bd-4c06-99ee-57f5593afa6a",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "chunkSize": 512,
+        "chunkOverlap": 50,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        656,
+        272
+      ],
+      "id": "2669147b-ce68-4ab5-b850-645f52192e20",
+      "name": "Recursive Character Text Splitter"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "3a249870-6b43-4aaf-8c55-bf00b2850a8e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9239fff25f776f12e45ddb79b59333e32be8fc9a764ad3879f41d8811537820e"
+  },
+  "id": "u1scMapUJI6d05cA",
+  "tags": []
+}

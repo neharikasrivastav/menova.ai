@@ -1,4 +1,4 @@
-# MenoWise — Architecture Decision Record (ADR)
+# Menova — Architecture Decision Record (ADR)
 
 ## ADR-001: Three-Tier RAG Architecture
 

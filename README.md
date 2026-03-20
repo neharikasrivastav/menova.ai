@@ -167,12 +167,7 @@ menova/
 - Answers depend on connections between entities, not just document content
 - Safety-critical decisions require structured knowledge traversal
 
-### The upgrade signal:
-Don't guess which tier you need. Start simple, instrument retrieval, and let failure modes tell you when to upgrade.
 
-## About This Project
-
-This project was built as an AI Product Management portfolio piece, inspired by [Sara Soleymani's RAG series](https://www.linkedin.com/pulse/rag-revenue-teams-from-simple-retrieval-agentic-graph-sara-soleymani-cjuec/) which demonstrated the same tier progression for sales/GTM use cases. menova applies the framework to healthcare — a domain where RAG quality isn't just a product metric, it's a safety requirement.
 
 **Built by:** Neharika Srivastava
 

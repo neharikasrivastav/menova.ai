@@ -2,8 +2,6 @@
 
 ## ADR-001: Three-Tier RAG Architecture
 
-**Status:** Accepted
-**Date:** March 2026
 
 ### Context
 We needed to build an AI health assistant for menopause that handles queries ranging from simple factual lookups to complex drug interaction safety checks. A single retrieval strategy cannot serve all query types effectively.
@@ -30,8 +28,6 @@ Each tier was justified by documented failure modes:
 
 ## ADR-002: Confidence-Gated Query Routing
 
-**Status:** Accepted
-**Date:** March 2026
 
 ### Context
 Not every query needs the most sophisticated (and expensive/slow) RAG tier. Simple educational questions shouldn't pay the latency cost of graph traversal, and high-risk drug interaction queries shouldn't be handled by simple retrieval.
@@ -55,9 +51,6 @@ Implement a confidence router that classifies every query as LOW, MEDIUM, or HIG
 
 ## ADR-003: Post-Response Safety Check Layer
 
-**Status:** Accepted
-**Date:** March 2026
-
 ### Context
 In healthcare AI, a wrong answer isn't just unhelpful — it can be dangerous. Even with grounded RAG, the system could generate responses that recommend specific medications, make definitive diagnoses, or miss important safety caveats.
 
@@ -79,19 +72,12 @@ Add a safety review LLM call after every generated response that evaluates the o
 
 ## ADR-004: Google Gemini Free Tier as LLM Provider
 
-**Status:** Accepted
-**Date:** March 2026
-
-### Context
-This is a portfolio project with a $0 budget constraint. We needed an LLM provider that offers both chat completion and embedding models at no cost.
-
 ### Decision
 Use Google Gemini API free tier for all LLM calls and embeddings.
 
 ### Rationale
 - Free tier with no credit card required
 - Both chat models (gemini-2.5-flash-lite) and embedding models (gemini-embedding-001) available
-- 15 requests/minute on flash-lite is sufficient for portfolio testing
 - n8n has built-in Gemini integration
 
 ### Consequences
@@ -107,8 +93,6 @@ For a production deployment, switch to a paid API tier or self-hosted model to e
 
 ## ADR-005: Knowledge Graph Data Embedded in Prompt (Graph RAG)
 
-**Status:** Accepted (with caveat)
-**Date:** March 2026
 
 ### Context
 The Neo4j Aura HTTP API connection from n8n's self-hosted Docker environment encountered authentication issues that could not be resolved within the project timeline.

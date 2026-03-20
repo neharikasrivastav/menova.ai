@@ -1,4 +1,4 @@
-# MENOWISE KNOWLEDGE BASE
+# MENOVA KNOWLEDGE BASE
 # Each document is separated by ===DOCUMENT=== markers
 # Copy each document into a separate Edit Fields node or file for ingestion
 
